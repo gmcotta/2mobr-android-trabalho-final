@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">2mbor-trabalho-final</string>
+    <string name="login_title">Login</string>
+    <string name="email_hint">Email</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button">Login</string>
+    <string name="register_title">Register</string>
+    <string name="register_button">Register</string>
+    <string name="login_link">Click to login</string>
+    <string name="register_link">Click to register</string>
+    <string name="logout_button">Logout</string>
+    <string name="required_fields_error_message">Fields are required!</string>
+    <string name="invalid_email_error_message">Invalid e-mail!</string>
+    <string name="registered_email_error_message">E-mail already registered!</string>
+    <string name="register_error_message">Error while registering user!</string>
+    <string name="register_success_message">User successfully registered!</string>
+    <string name="login_invalid_user_message">User not registered!</string>
+    <string name="login_invalid_credentials_message">E-mail or password don\'t match!</string>
+    <string name="login_error_message">Error while logging in user!</string>
+    <string name="login_success_message">User logged in!</string>
+    <string name="session_user_not_loggedin_error_message">User not logged in!</string>
 </resources>

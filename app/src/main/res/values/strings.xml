@@ -19,4 +19,10 @@
     <string name="login_error_message">Error while logging in user!</string>
     <string name="login_success_message">User logged in!</string>
     <string name="session_user_not_loggedin_error_message">User not logged in!</string>
+    <string name="add_event">Add</string>
+    <string name="create_event_title">Create event</string>
+    <string name="name_hint">Name</string>
+    <string name="address_hint">Address</string>
+    <string name="create_event_error_message">Error while create event!</string>
+    <string name="save_event_success_message">Event successfully created!</string>
 </resources>

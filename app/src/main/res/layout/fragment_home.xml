@@ -18,5 +18,11 @@
         android:id="@+id/btnLogout"
         android:text="@string/logout_button"
         android:layout_marginTop="20dp" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnAddEvent"
+        android:text="@string/add_event"
+        android:layout_marginTop="20dp" />
 
 </LinearLayout>

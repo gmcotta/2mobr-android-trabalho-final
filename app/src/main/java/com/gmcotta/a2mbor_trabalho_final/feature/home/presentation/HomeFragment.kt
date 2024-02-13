@@ -18,6 +18,7 @@ class HomeFragment: Fragment() {
     private val viewModel: HomeViewModel by viewModels()
 
     private lateinit var buttonLogout: Button
+    private lateinit var buttonAddEvent: Button
     private lateinit var emailText: TextView
 
     override fun onCreateView(
@@ -45,6 +46,7 @@ class HomeFragment: Fragment() {
     private fun setupElements() {
         binding?.let {
             buttonLogout = it.btnLogout
+            buttonAddEvent = it.btnAddEvent
             emailText = it.tvUserEmail
         }
     }
@@ -61,13 +63,20 @@ class HomeFragment: Fragment() {
 
     private fun setupListeners() {
         buttonLogout.setOnClickListener {
-
             viewModel.logout()
             goToLogin()
+        }
+
+        buttonAddEvent.setOnClickListener {
+            goToAddEvent()
         }
     }
 
     private fun goToLogin() {
         findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
+    }
+
+    private fun goToAddEvent() {
+        findNavController().navigate(R.id.action_homeFragment_to_createEventFragment)
     }
 }

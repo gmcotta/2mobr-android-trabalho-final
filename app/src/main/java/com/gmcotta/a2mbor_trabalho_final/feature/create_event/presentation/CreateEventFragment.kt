@@ -1,10 +1,12 @@
 package com.gmcotta.a2mbor_trabalho_final.feature.create_event.presentation
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -32,6 +34,7 @@ class CreateEventFragment : Fragment() {
     private lateinit var showTimePickerButton: Button
     private lateinit var timeResult: TextView
     private lateinit var saveEventButton: Button
+    private lateinit var progressBar: ProgressBar
 
     private lateinit var materialDatePicker: MaterialDatePicker<*>
     private lateinit var materialTimePicker: MaterialTimePicker
@@ -68,6 +71,7 @@ class CreateEventFragment : Fragment() {
             showTimePickerButton = it.btnPickTime
             timeResult = it.tvTime
             saveEventButton = it.btnSaveEvent
+            progressBar = it.progressBar
 
             materialDatePicker = MaterialDatePicker.Builder
                 .datePicker()
@@ -83,20 +87,20 @@ class CreateEventFragment : Fragment() {
     }
 
     private fun setupObservers() {
-        viewModel.status.observe(viewLifecycleOwner) {
-            if (it) {
-                goToHome()
-            }
-        }
-
         viewModel.msg.observe(viewLifecycleOwner) {
             if (!it.isNullOrBlank()) {
                 val msg = when(it) {
                     "required_fields_error_message" -> getString(R.string.required_fields_error_message)
                     "save_event_success_message" -> getString(R.string.save_event_success_message)
+                    "save_event_error_message" -> getString(R.string.create_event_error_message)
                     else -> getString(R.string.create_event_error_message)
                 }
                 Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
+                progressBar.visibility = View.GONE
+
+                if (it == "save_event_success_message") {
+                    goToHome()
+                }
             }
         }
     }
@@ -113,7 +117,7 @@ class CreateEventFragment : Fragment() {
         saveEventButton.setOnClickListener {
             event.name = nameEditText.text.toString()
             event.address = addressEditText.text.toString()
-
+            progressBar.visibility = View.VISIBLE
             viewModel.saveEvent(event)
         }
 

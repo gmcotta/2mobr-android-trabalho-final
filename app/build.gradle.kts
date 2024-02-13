@@ -56,6 +56,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.firebaseui:firebase-ui-auth:7.2.0")
     implementation("com.google.firebase:firebase-auth:22.3.1")
+    implementation("com.google.firebase:firebase-firestore")
 
     // Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")

@@ -1,6 +1,5 @@
 package com.gmcotta.a2mbor_trabalho_final.feature.create_event.presentation
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -27,6 +26,7 @@ class CreateEventFragment : Fragment() {
     private val viewModel: CreateEventViewModel by viewModels()
     private lateinit var event: Event
 
+    private lateinit var backButton: Button
     private lateinit var nameEditText: TextInputEditText
     private lateinit var addressEditText: TextInputEditText
     private lateinit var showDatePickerButton: Button
@@ -64,6 +64,7 @@ class CreateEventFragment : Fragment() {
 
     private fun setupElements() {
         binding?.let {
+            backButton = it.btnBack
             nameEditText = it.etName
             addressEditText = it.etAddress
             showDatePickerButton = it.btnPickDate
@@ -99,13 +100,17 @@ class CreateEventFragment : Fragment() {
                 progressBar.visibility = View.GONE
 
                 if (it == "save_event_success_message") {
-                    goToHome()
+                    navigateToHome()
                 }
             }
         }
     }
 
     private fun setupListeners() {
+        backButton.setOnClickListener {
+            navigateToHome()
+        }
+
         showDatePickerButton.setOnClickListener {
             materialDatePicker.show(childFragmentManager, "MATERIAL_DATE_PICKER")
         }
@@ -144,7 +149,7 @@ class CreateEventFragment : Fragment() {
         }
     }
 
-    private fun goToHome() {
+    private fun navigateToHome() {
         findNavController().navigate(R.id.action_createEventFragment_to_homeFragment)
     }
 }

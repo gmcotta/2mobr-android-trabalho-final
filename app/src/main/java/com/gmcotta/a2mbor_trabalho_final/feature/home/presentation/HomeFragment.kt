@@ -33,6 +33,7 @@ class HomeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        getEvents()
         setupElements()
         setupTexts()
         setupListeners()
@@ -41,6 +42,10 @@ class HomeFragment: Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         binding = null
+    }
+
+    private fun getEvents() {
+        viewModel.getEvents()
     }
 
     private fun setupElements() {

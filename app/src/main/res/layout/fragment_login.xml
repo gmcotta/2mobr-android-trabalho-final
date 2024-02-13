@@ -6,8 +6,9 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".feature.login.LoginActivity"
+    tools:context=".feature.login.presentation.LoginFragment"
     android:padding="20dp">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -28,7 +29,7 @@
             android:hint="@string/email_hint"
             android:textColorHint="#546E7A"
             android:inputType="textEmailAddress"
-             />
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout

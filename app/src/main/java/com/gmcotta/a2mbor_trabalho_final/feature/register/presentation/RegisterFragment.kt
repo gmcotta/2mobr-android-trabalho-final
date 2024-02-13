@@ -1,25 +1,23 @@
-package com.gmcotta.a2mbor_trabalho_final.feature.register
+package com.gmcotta.a2mbor_trabalho_final.feature.register.presentation
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.gmcotta.a2mbor_trabalho_final.R
-import com.gmcotta.a2mbor_trabalho_final.databinding.ActivityRegisterBinding
-import com.gmcotta.a2mbor_trabalho_final.feature.login.LoginActivity
-import com.gmcotta.a2mbor_trabalho_final.feature.register.presentation.RegisterViewModel
+import com.gmcotta.a2mbor_trabalho_final.databinding.FragmentRegisterBinding
 import com.google.android.material.textfield.TextInputEditText
 
-class RegisterActivity : AppCompatActivity() {
-    private val binding: ActivityRegisterBinding by lazy {
-        ActivityRegisterBinding.inflate(layoutInflater)
-    }
-
-    private lateinit var viewModel: RegisterViewModel
+class RegisterFragment: Fragment() {
+    private var binding: FragmentRegisterBinding? = null
+    private val viewModel: RegisterViewModel by viewModels()
 
     private lateinit var editTextEmail: TextInputEditText
     private lateinit var editTextPassword: TextInputEditText
@@ -27,26 +25,37 @@ class RegisterActivity : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
     private lateinit var loginLink: TextView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentRegisterBinding.inflate(inflater, container, false)
+        return binding?.root
+    }
 
-        viewModel = RegisterViewModel()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        setupObservers()
         setupElements()
+        setupObservers()
         setupListeners()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+
     private fun setupObservers() {
-        viewModel.status.observe(this) {
+        viewModel.status.observe(viewLifecycleOwner) {
             progressBar.visibility = View.GONE
             if (it) {
                 goToLogin()
             }
         }
 
-        viewModel.msg.observe(this) {
+        viewModel.msg.observe(viewLifecycleOwner) {
             progressBar.visibility = View.GONE
             if (!it.isNullOrBlank()) {
                 val msg = when (it) {
@@ -57,17 +66,19 @@ class RegisterActivity : AppCompatActivity() {
                     "register_error_message" -> getString(R.string.register_error_message)
                     else -> getString(R.string.register_error_message)
                 }
-                Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
+                Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
             }
         }
     }
 
     private fun setupElements() {
-        editTextEmail = binding.tiEmail
-        editTextPassword = binding.tiPassword
-        buttonRegister = binding.btnRegister
-        progressBar = binding.progressBar
-        loginLink = binding.tvLoginLink
+        binding?.let {
+            editTextEmail = it.tiEmail
+            editTextPassword = it.tiPassword
+            buttonRegister = it.btnRegister
+            progressBar = it.progressBar
+            loginLink = it.tvLoginLink
+        }
     }
 
     private fun setupListeners() {
@@ -77,7 +88,6 @@ class RegisterActivity : AppCompatActivity() {
             progressBar.visibility = View.VISIBLE
 
             viewModel.signUp(email, password)
-
         }
 
         loginLink.setOnClickListener {
@@ -86,8 +96,6 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     private fun goToLogin() {
-        val intent = Intent(applicationContext, LoginActivity::class.java)
-        startActivity(intent)
-        finish()
+        findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
     }
 }

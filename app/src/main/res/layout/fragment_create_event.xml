@@ -10,7 +10,7 @@
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back" />
+        android:text="@string/back_button" />
 
     <TextView
         android:layout_width="match_parent"
@@ -39,15 +39,15 @@
 
         <TextView
             android:id="@+id/tvDate"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Date: " />
+            android:text="@string/create_event_date_hint" />
         <Button
             android:id="@+id/btnPickDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Date" />
+            android:text="@string/select_date_button" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,15 +56,15 @@
 
         <TextView
             android:id="@+id/tvTime"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Time: " />
+            android:text="@string/create_event_time_hint" />
         <Button
             android:id="@+id/btnPickTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Time" />
+            android:text="@string/select_time_button" />
     </LinearLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -86,5 +86,5 @@
         android:id="@+id/btnSaveEvent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save event" />
+        android:text="@string/save_event_button" />
 </LinearLayout>

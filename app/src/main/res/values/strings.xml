@@ -19,10 +19,19 @@
     <string name="login_error_message">Error while logging in user!</string>
     <string name="login_success_message">User logged in!</string>
     <string name="session_user_not_loggedin_error_message">User not logged in!</string>
-    <string name="add_event">Add</string>
+    <string name="add_event">Add event</string>
     <string name="create_event_title">Create event</string>
     <string name="name_hint">Name</string>
     <string name="address_hint">Address</string>
     <string name="create_event_error_message">Error while create event!</string>
     <string name="save_event_success_message">Event successfully created!</string>
+    <string name="edit_button">Edit</string>
+    <string name="delete_button">Delete</string>
+    <string name="home_title">Events</string>
+    <string name="create_event_date_hint">Date:</string>
+    <string name="select_date_button">Select Date</string>
+    <string name="create_event_time_hint">Time:</string>
+    <string name="back_button">Back</string>
+    <string name="select_time_button">Select Time</string>
+    <string name="save_event_button">Save event</string>
 </resources>

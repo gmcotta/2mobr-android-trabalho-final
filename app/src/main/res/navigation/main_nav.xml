@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/createEventFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -37,14 +37,31 @@
         <action
             android:id="@+id/action_homeFragment_to_createEventFragment"
             app:destination="@id/createEventFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_editEventFragment"
+            app:destination="@id/editEventFragment" />
     </fragment>
     <fragment
         android:id="@+id/createEventFragment"
         android:name="com.gmcotta.a2mbor_trabalho_final.feature.create_event.presentation.CreateEventFragment"
         android:label="fragment_create_event"
-        tools:layout="@layout/fragment_create_event" >
+        tools:layout="@layout/fragment_create_event">
         <action
             android:id="@+id/action_createEventFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editEventFragment"
+        android:name="com.gmcotta.a2mbor_trabalho_final.feature.edit_event.presentation.EditEventFragment"
+        android:label="fragment_edit_event"
+        tools:layout="@layout/fragment_edit_event">
+        <action
+            android:id="@+id/action_editEventFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <!-- TODO: Verificar o motivo de estar reclamando -->
+        <argument
+            android:name="event"
+            app:argType="com.gmcotta.a2mbor_trabalho_final.model.Event" />
+
     </fragment>
 </navigation>

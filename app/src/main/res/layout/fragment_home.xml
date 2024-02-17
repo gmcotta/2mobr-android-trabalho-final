@@ -38,7 +38,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/progressBar"
         android:layout_gravity="center"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:padding="20dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvEventsList"

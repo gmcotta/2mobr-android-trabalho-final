@@ -1,14 +1,13 @@
-package com.gmcotta.a2mbor_trabalho_final.feature.create_event.presentation
+package com.gmcotta.a2mbor_trabalho_final.feature.edit_event.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.gmcotta.a2mbor_trabalho_final.feature.create_event.data.CreateEventRepositoryImpl
+import com.gmcotta.a2mbor_trabalho_final.feature.edit_event.data.EditEventRepositoryImpl
 import com.gmcotta.a2mbor_trabalho_final.model.Event
 
-class CreateEventViewModel : ViewModel() {
-    private val createEventRepository = CreateEventRepositoryImpl()
-
+class EditEventViewModel: ViewModel() {
+    private val editEventRepository = EditEventRepositoryImpl()
     private val _msg = MutableLiveData<String>()
     val msg: LiveData<String> = _msg
 
@@ -17,10 +16,10 @@ class CreateEventViewModel : ViewModel() {
             _msg.value = "required_fields_error_message"
             return
         }
-        createEventRepository.save(event, {
-            _msg.value = "save_event_success_message"
+        editEventRepository.save(event, {
+            _msg.value = "edit_event_success_message"
         }) {
-            _msg.value = "save_event_error_message"
+            _msg.value = "edit_event_error_message"
         }
     }
 }

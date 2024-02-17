@@ -15,7 +15,7 @@
         android:textStyle="bold"
         android:layout_marginBottom="20dp"
         android:gravity="center"
-        android:text="@string/register_title" />
+        android:text="@string/register_title"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
             android:layout_height="match_parent"
             android:hint="@string/email_hint"
             android:textColorHint="#546E7A"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -41,21 +41,22 @@
             android:layout_height="match_parent"
             android:hint="@string/password_hint"
             android:textColorHint="#546E7A"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/progressBar"
-        android:visibility="gone" />
+        android:visibility="gone"
+        android:padding="20dp"/>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:id="@+id/btnRegister"
-        android:text="@string/register_button" />
+        android:text="@string/register_button"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -65,5 +66,5 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:gravity="center"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"/>
 </LinearLayout>

@@ -7,7 +7,6 @@ import com.gmcotta.a2mbor_trabalho_final.infra.firebase.FirebaseAuthService
 import com.gmcotta.a2mbor_trabalho_final.infra.firebase.FirebaseAuthServiceImpl
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gmcotta.a2mbor_trabalho_final.feature.create_event.data.CreateEventRepositoryImpl
 import com.gmcotta.a2mbor_trabalho_final.feature.home.data.HomeRepositoryImpl
 import com.gmcotta.a2mbor_trabalho_final.model.Event
 import kotlinx.coroutines.launch

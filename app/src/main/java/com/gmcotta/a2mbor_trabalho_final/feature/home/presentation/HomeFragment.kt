@@ -20,7 +20,10 @@ class HomeFragment: Fragment() {
     private var binding: FragmentHomeBinding? = null
     private val viewModel: HomeViewModel by viewModels()
     private val homeAdapter: HomeAdapter by lazy {
-        HomeAdapter()
+        HomeAdapter { event ->
+            findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToEditEventFragment(event))
+        }
     }
 
     private lateinit var buttonLogout: Button

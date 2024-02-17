@@ -5,21 +5,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.gmcotta.a2mbor_trabalho_final.R
+import com.gmcotta.a2mbor_trabalho_final.adapters.HomeAdapter
 import com.gmcotta.a2mbor_trabalho_final.databinding.FragmentHomeBinding
 
 class HomeFragment: Fragment() {
     private var binding: FragmentHomeBinding? = null
     private val viewModel: HomeViewModel by viewModels()
+    private val homeAdapter: HomeAdapter by lazy {
+        HomeAdapter()
+    }
 
     private lateinit var buttonLogout: Button
     private lateinit var buttonAddEvent: Button
     private lateinit var emailText: TextView
+    private lateinit var progressBar: ProgressBar
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,6 +42,7 @@ class HomeFragment: Fragment() {
 
         getEvents()
         setupElements()
+        setupObservers()
         setupTexts()
         setupListeners()
     }
@@ -48,11 +56,28 @@ class HomeFragment: Fragment() {
         viewModel.getEvents()
     }
 
+
+
     private fun setupElements() {
         binding?.let {
             buttonLogout = it.btnLogout
             buttonAddEvent = it.btnAddEvent
             emailText = it.tvUserEmail
+            progressBar = it.progressBar
+
+            it.rvEventsList.apply {
+                layoutManager = LinearLayoutManager(this@HomeFragment.context)
+                adapter = homeAdapter
+            }
+        }
+    }
+
+    private fun setupObservers() {
+        viewModel.eventsList.observe(viewLifecycleOwner) {
+            it?.let {
+                homeAdapter.submitList(it)
+                progressBar.visibility = View.GONE
+            }
         }
     }
 

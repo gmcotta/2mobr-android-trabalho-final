@@ -33,8 +33,15 @@
             android:layout_marginTop="20dp" />
     </LinearLayout>
 
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_gravity="center"
+        android:visibility="visible" />
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvNowPlayingMovies"
+        android:id="@+id/rvEventsList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:itemCount="2"

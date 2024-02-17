@@ -76,13 +76,11 @@ class CreateEventFragment : Fragment() {
 
             materialDatePicker = MaterialDatePicker.Builder
                 .datePicker()
-                // TODO: Colocar no strings.xml
-                .setTitleText("Select a date")
+                .setTitleText(R.string.select_date_dialog_title)
                 .build()
 
             materialTimePicker = MaterialTimePicker.Builder()
-                // TODO: Colocar no strings.xml
-                .setTitleText("Select a time")
+                .setTitleText(R.string.select_time_dialog_title)
                 .build()
         }
     }
@@ -129,8 +127,7 @@ class CreateEventFragment : Fragment() {
         materialDatePicker.addOnPositiveButtonClickListener {
             val date = materialDatePicker.headerText
             val timestamp = getDateInstance().parse(date)
-            // TODO: Arrumar aqui
-            dateResult.text = "Date: ${date}"
+            dateResult.text = getString(R.string.date_placeholder, date)
             if (timestamp != null) {
                 event.date = timestamp
             }
@@ -141,8 +138,7 @@ class CreateEventFragment : Fragment() {
             val minute = materialTimePicker.minute
             val time = "${hour}:${minute}"
             val timestamp = getTimeInstance(DateFormat.SHORT).parse(time)
-            // TODO: Arrumar aqui
-            timeResult.text = "Time: ${time}"
+            timeResult.text = getString(R.string.time_placeholder, time)
             if (timestamp != null) {
                 event.time = timestamp
             }

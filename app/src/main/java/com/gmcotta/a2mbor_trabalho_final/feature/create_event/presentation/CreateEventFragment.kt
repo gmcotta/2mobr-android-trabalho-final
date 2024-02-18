@@ -8,10 +8,10 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.gmcotta.a2mbor_trabalho_final.R
+import com.gmcotta.a2mbor_trabalho_final.base.LoggedFragment
 import com.gmcotta.a2mbor_trabalho_final.databinding.FragmentCreateEventBinding
 import com.gmcotta.a2mbor_trabalho_final.model.Event
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -21,7 +21,7 @@ import java.text.DateFormat
 import java.text.DateFormat.getDateInstance
 import java.text.DateFormat.getTimeInstance
 
-class CreateEventFragment : Fragment() {
+class CreateEventFragment : LoggedFragment() {
     private var binding: FragmentCreateEventBinding? = null
     private val viewModel: CreateEventViewModel by viewModels()
     private lateinit var event: Event

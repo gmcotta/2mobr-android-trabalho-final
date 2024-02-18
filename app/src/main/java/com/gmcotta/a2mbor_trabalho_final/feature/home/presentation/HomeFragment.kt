@@ -2,7 +2,6 @@ package com.gmcotta.a2mbor_trabalho_final.feature.home.presentation
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,16 +9,16 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gmcotta.a2mbor_trabalho_final.R
 import com.gmcotta.a2mbor_trabalho_final.adapters.HomeAdapter
+import com.gmcotta.a2mbor_trabalho_final.base.LoggedFragment
 import com.gmcotta.a2mbor_trabalho_final.databinding.FragmentHomeBinding
 import com.gmcotta.a2mbor_trabalho_final.model.Event
 
-class HomeFragment: Fragment() {
+class HomeFragment: LoggedFragment() {
     private var binding: FragmentHomeBinding? = null
     private val viewModel: HomeViewModel by viewModels()
     private val homeAdapter: HomeAdapter by lazy {
@@ -29,7 +28,6 @@ class HomeFragment: Fragment() {
                     .navigate(HomeFragmentDirections.actionHomeFragmentToEditEventFragment(event))
             },
             { event ->
-                Log.i("deleteButton", event.toString())
                 createDialog(event)
             }
         )
@@ -55,7 +53,6 @@ class HomeFragment: Fragment() {
         getEvents()
         setupElements()
         setupObservers()
-        setupTexts()
         setupListeners()
     }
 
@@ -103,16 +100,6 @@ class HomeFragment: Fragment() {
                 getEvents()
             }
         }
-    }
-
-    private fun setupTexts() {
-        val email = viewModel.getUserEmail()
-        if (email == null) {
-            Toast.makeText(requireContext(), getString(R.string.session_user_not_loggedin_error_message), Toast.LENGTH_LONG).show()
-            navigateToLogin()
-            return
-        }
-        emailText.text = email
     }
 
     private fun setupListeners() {

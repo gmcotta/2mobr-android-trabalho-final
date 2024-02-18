@@ -2,15 +2,15 @@ package com.gmcotta.a2mbor_trabalho_final.feature.home.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.gmcotta.a2mbor_trabalho_final.infra.firebase.FirebaseAuthService
 import com.gmcotta.a2mbor_trabalho_final.infra.firebase.FirebaseAuthServiceImpl
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import com.gmcotta.a2mbor_trabalho_final.base.LoggedViewModel
 import com.gmcotta.a2mbor_trabalho_final.feature.home.data.HomeRepositoryImpl
 import com.gmcotta.a2mbor_trabalho_final.model.Event
 import kotlinx.coroutines.launch
 
-class HomeViewModel: ViewModel() {
+class HomeViewModel: LoggedViewModel() {
     private val homeRepository = HomeRepositoryImpl()
     private lateinit var firebaseAuth: FirebaseAuthService
 
@@ -20,11 +20,6 @@ class HomeViewModel: ViewModel() {
     private val _eventsList: MutableLiveData<List<Event>> = MutableLiveData()
     val eventsList: LiveData<List<Event>>
         get() = _eventsList
-
-    fun getUserEmail(): String? {
-        firebaseAuth = FirebaseAuthServiceImpl()
-        return firebaseAuth.getUser().email
-    }
 
     fun logout() {
         firebaseAuth = FirebaseAuthServiceImpl()

@@ -17,8 +17,8 @@ class FirebaseAuthServiceImpl : FirebaseAuthService {
         return firebaseAuth.createUserWithEmailAndPassword(email, password);
     }
 
-    override fun getUser():FirebaseUser {
-        return firebaseAuth.currentUser!!
+    override fun getUser(): FirebaseUser? {
+        return firebaseAuth.currentUser
     }
 
     override fun signOut() {

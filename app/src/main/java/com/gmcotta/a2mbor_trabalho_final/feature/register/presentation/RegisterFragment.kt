@@ -51,7 +51,7 @@ class RegisterFragment: Fragment() {
         viewModel.status.observe(viewLifecycleOwner) {
             progressBar.visibility = View.GONE
             if (it) {
-                goToLogin()
+                navigateToLogin()
             }
         }
 
@@ -91,11 +91,11 @@ class RegisterFragment: Fragment() {
         }
 
         loginLink.setOnClickListener {
-            goToLogin()
+            navigateToLogin()
         }
     }
 
-    private fun goToLogin() {
+    private fun navigateToLogin() {
         findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
     }
 }

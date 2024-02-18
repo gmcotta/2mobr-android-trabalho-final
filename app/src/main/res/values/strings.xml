@@ -41,4 +41,7 @@
     <string name="edit_event_title">Edit event</string>
     <string name="edit_event_error_message">Error while saving event!</string>
     <string name="edit_event_success_message">Event successfully edited!</string>
+    <string name="get_events_error_message">Error while loading events!</string>
+    <string name="delete_event_error_message">Error while deleting event!</string>
+    <string name="delete_event_success_message">Event successfully deleted!</string>
 </resources>

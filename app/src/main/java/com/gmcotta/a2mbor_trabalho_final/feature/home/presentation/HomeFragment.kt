@@ -1,6 +1,8 @@
 package com.gmcotta.a2mbor_trabalho_final.feature.home.presentation
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,15 +17,22 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.gmcotta.a2mbor_trabalho_final.R
 import com.gmcotta.a2mbor_trabalho_final.adapters.HomeAdapter
 import com.gmcotta.a2mbor_trabalho_final.databinding.FragmentHomeBinding
+import com.gmcotta.a2mbor_trabalho_final.model.Event
 
 class HomeFragment: Fragment() {
     private var binding: FragmentHomeBinding? = null
     private val viewModel: HomeViewModel by viewModels()
     private val homeAdapter: HomeAdapter by lazy {
-        HomeAdapter { event ->
-            findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToEditEventFragment(event))
-        }
+        HomeAdapter(
+            { event ->
+                findNavController()
+                    .navigate(HomeFragmentDirections.actionHomeFragmentToEditEventFragment(event))
+            },
+            { event ->
+                Log.i("deleteButton", event.toString())
+                createDialog(event)
+            }
+        )
     }
 
     private lateinit var buttonLogout: Button
@@ -59,8 +68,6 @@ class HomeFragment: Fragment() {
         viewModel.getEvents()
     }
 
-
-
     private fun setupElements() {
         binding?.let {
             buttonLogout = it.btnLogout
@@ -82,13 +89,27 @@ class HomeFragment: Fragment() {
                 progressBar.visibility = View.GONE
             }
         }
+
+        viewModel.msg.observe(viewLifecycleOwner) {
+            if (!it.isNullOrBlank()) {
+                val msg = when(it) {
+                    "get_events_error_message" -> getString(R.string.get_events_error_message)
+                    "delete_event_success_message" -> getString(R.string.delete_event_success_message)
+                    "delete_event_error_message" -> getString(R.string.delete_event_error_message)
+                    else -> getString(R.string.create_event_error_message)
+                }
+                Toast.makeText(requireContext(), msg, Toast.LENGTH_LONG).show()
+
+                getEvents()
+            }
+        }
     }
 
     private fun setupTexts() {
         val email = viewModel.getUserEmail()
         if (email == null) {
             Toast.makeText(requireContext(), getString(R.string.session_user_not_loggedin_error_message), Toast.LENGTH_LONG).show()
-            goToLogin()
+            navigateToLogin()
             return
         }
         emailText.text = email
@@ -97,19 +118,35 @@ class HomeFragment: Fragment() {
     private fun setupListeners() {
         buttonLogout.setOnClickListener {
             viewModel.logout()
-            goToLogin()
+            navigateToLogin()
         }
 
         buttonAddEvent.setOnClickListener {
-            goToAddEvent()
+            navigateToAddEvent()
         }
     }
 
-    private fun goToLogin() {
+    private fun createDialog(event: Event) {
+        val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
+        dialogBuilder
+            .setTitle("Delete event")
+            .setMessage("Are you sure?")
+            .setPositiveButton("Yes") { _, _ ->
+                viewModel.deleteEvent(event)
+            }
+            .setNegativeButton("No") { dialog, _ ->
+                dialog.cancel()
+            }
+
+        val dialog: AlertDialog = dialogBuilder.create()
+        dialog.show()
+    }
+
+    private fun navigateToLogin() {
         findNavController().navigate(R.id.action_homeFragment_to_loginFragment)
     }
 
-    private fun goToAddEvent() {
+    private fun navigateToAddEvent() {
         findNavController().navigate(R.id.action_homeFragment_to_createEventFragment)
     }
 }

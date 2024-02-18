@@ -57,6 +57,11 @@ class EditEventFragment: Fragment() {
         setupListeners()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+
     private fun setupElements() {
         binding?.let {
             val formattedDate = event.date?.let { date -> DateFormat.getDateInstance().format(date) }
@@ -150,10 +155,5 @@ class EditEventFragment: Fragment() {
 
     private fun navigateToHome() {
         findNavController().navigate(R.id.action_editEventFragment_to_homeFragment)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
     }
 }

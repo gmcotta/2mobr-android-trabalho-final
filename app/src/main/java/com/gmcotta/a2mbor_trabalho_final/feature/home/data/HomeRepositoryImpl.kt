@@ -17,4 +17,15 @@ class HomeRepositoryImpl: HomeRepository {
             onFailure(exception)
         }
     }
+
+    override suspend fun delete(
+        event: Event,
+        onSuccess: () -> Unit,
+        onFailure: (exception: Exception) -> Unit
+    ) {
+        Firebase.firestore.collection(Constants.FIRESTORE_COLLECTION_EVENTS).document(event.id)
+            .delete()
+            .addOnSuccessListener { onSuccess() }
+            .addOnFailureListener { onFailure(it) }
+    }
 }

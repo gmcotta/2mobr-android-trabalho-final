@@ -9,7 +9,8 @@ import com.gmcotta.a2mbor_trabalho_final.model.Event
 import java.text.DateFormat
 
 class HomeAdapter(
-    private val onEditEventClicked: (Event) -> Unit
+    private val onEditEventClicked: (Event) -> Unit,
+    private val onDeleteEventClicked: (Event) -> Unit
 ):ListAdapter<Event, HomeAdapter.ViewHolder>(Event.DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = EventListItemBinding
@@ -18,10 +19,14 @@ class HomeAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position), onEditEventClicked)
+        holder.bind(getItem(position), onEditEventClicked, onDeleteEventClicked)
     }
     class ViewHolder(private val binding: EventListItemBinding): RecyclerView.ViewHolder(binding.root) {
-        fun bind(event: Event?, onEditEventClicked: (Event) -> Unit) = with(binding) {
+        fun bind(
+            event: Event?,
+            onEditEventClicked: (Event) -> Unit,
+            onDeleteEventClicked: (Event) -> Unit
+        ) = with(binding) {
             event?.let {
                 tvName.text = event.name
                 tvDate.text = event.date?.let { date -> DateFormat.getDateInstance().format(date) }
@@ -30,6 +35,9 @@ class HomeAdapter(
 
                 btnEdit.setOnClickListener {
                     onEditEventClicked(event)
+                }
+                btnDelete.setOnClickListener {
+                    onDeleteEventClicked(event)
                 }
             }
         }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cvWatch"
     android:layout_width="match_parent"
@@ -11,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:baselineAligned="false"
+        android:padding="8dp">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -19,28 +19,20 @@
             android:orientation="vertical">
             <TextView
                 android:id="@+id/tvName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                tools:text="Event 1" />
+                tools:text="Event 1"
+                style="@style/CardTitle"/>
             <TextView
                 android:id="@+id/tvDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                tools:text="Wed. 14 Feb 2024" />
+                tools:text="Wed. 14 Feb 2024"
+                style="@style/CardText"/>
             <TextView
                 android:id="@+id/tvTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                tools:text="10:00" />
+                tools:text="10:00"
+                style="@style/CardText"/>
             <TextView
                 android:id="@+id/tvAddress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                tools:text="Test Avenue, 1234" />
+                tools:text="Test Avenue, 1234"
+                style="@style/CardText"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -48,16 +40,12 @@
             android:orientation="vertical">
                 <Button
                     android:id="@+id/btnEdit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:text="@string/edit_button" />
+                    android:text="@string/edit_button"
+                    style="@style/ButtonDefault"/>
                 <Button
                     android:id="@+id/btnDelete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:text="@string/delete_button" />
+                    android:text="@string/delete_button"
+                    style="@style/ButtonDefault"/>
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -4,89 +4,74 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="20dp"
+    android:padding="@dimen/padding_default"
     tools:context=".feature.create_event.presentation.CreateEventFragment">
-    <Button
-        android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/back_button"/>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
-        android:text="@string/create_event_title"/>
+        android:id="@+id/tvBack"
+        android:text="@string/back_button"
+        style="@style/ButtonDefaultTransparent"
+        android:layout_margin="0dp"
+        android:paddingVertical="@dimen/padding_tiny"/>
+
+    <TextView
+        android:text="@string/create_event_title"
+        style="@style/Title"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        style="@style/TextInputLayout">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etName"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:hint="@string/name_hint"
-            android:textColorHint="#546E7A"/>
+            style="@style/TextInputEditText"/>
     </com.google.android.material.textfield.TextInputLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/margin_small">
         <TextView
             android:id="@+id/tvDate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/create_event_date_hint"/>
+            android:text="@string/create_event_date_hint"
+            style="@style/DateTimeText"/>
         <Button
             android:id="@+id/btnPickDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/select_date_button"/>
+            android:text="@string/select_date_button"
+            style="@style/ButtonDefault"
+            android:layout_margin="0dp"/>
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/margin_small">
         <TextView
             android:id="@+id/tvTime"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/create_event_time_hint"/>
+            android:text="@string/create_event_time_hint"
+            style="@style/DateTimeText"/>
         <Button
             android:id="@+id/btnPickTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/select_time_button"/>
+            android:text="@string/select_time_button"
+            style="@style/ButtonDefault"
+            android:layout_margin="0dp"/>
     </LinearLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/TextInputLayout">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etAddress"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:hint="@string/address_hint"
-            android:textColorHint="#546E7A"/>
+            style="@style/TextInputEditText"/>
     </com.google.android.material.textfield.TextInputLayout>
+
     <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/progressBar"
-        android:visibility="gone"
-        android:layout_gravity="center"
-        android:padding="20dp"/>
+        style="@style/ProgressBar"/>
+
     <Button
         android:id="@+id/btnSaveEvent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/save_event_button"/>
+        android:text="@string/save_event_button"
+        style="@style/ButtonFullWidth"/>
 </LinearLayout>

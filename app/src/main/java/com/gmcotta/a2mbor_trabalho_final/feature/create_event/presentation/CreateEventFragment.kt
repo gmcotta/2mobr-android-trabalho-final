@@ -26,7 +26,7 @@ class CreateEventFragment : LoggedFragment() {
     private val viewModel: CreateEventViewModel by viewModels()
     private lateinit var event: Event
 
-    private lateinit var backButton: Button
+    private lateinit var backTextView: TextView
     private lateinit var nameEditText: TextInputEditText
     private lateinit var addressEditText: TextInputEditText
     private lateinit var showDatePickerButton: Button
@@ -64,7 +64,7 @@ class CreateEventFragment : LoggedFragment() {
 
     private fun setupElements() {
         binding?.let {
-            backButton = it.btnBack
+            backTextView = it.tvBack
             nameEditText = it.etName
             addressEditText = it.etAddress
             showDatePickerButton = it.btnPickDate
@@ -105,7 +105,7 @@ class CreateEventFragment : LoggedFragment() {
     }
 
     private fun setupListeners() {
-        backButton.setOnClickListener {
+        backTextView.setOnClickListener {
             navigateToHome()
         }
 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_tiny">8dp</dimen>
+    <dimen name="margin_small">16dp</dimen>
+    <dimen name="margin_default">20dp</dimen>
+
+    <dimen name="padding_tiny">8dp</dimen>
+    <dimen name="padding_small">16dp</dimen>
+    <dimen name="padding_default">20dp</dimen>
+
+    <dimen name="font_size_title">32sp</dimen>
+    <dimen name="font_size_button_large">24sp</dimen>
+    <dimen name="font_size_card_title">20sp</dimen>
+    <dimen name="font_size_link">16sp</dimen>
+
+    <dimen name="button_height_large">56dp</dimen>
+</resources>

@@ -28,7 +28,7 @@ class EditEventFragment: LoggedFragment() {
         editEventFragmentArgs.event
     }
 
-    private lateinit var backButton: Button
+    private lateinit var backTextView: TextView
     private lateinit var nameEditText: TextInputEditText
     private lateinit var addressEditText: TextInputEditText
     private lateinit var showDatePickerButton: Button
@@ -67,7 +67,7 @@ class EditEventFragment: LoggedFragment() {
             val formattedDate = event.date?.let { date -> DateFormat.getDateInstance().format(date) }
             val formattedTime = event.time?.let { time -> DateFormat.getTimeInstance(DateFormat.SHORT).format(time) }
 
-            backButton = it.btnBack
+            backTextView = it.tvBack
             nameEditText = it.etName
             addressEditText = it.etAddress
             showDatePickerButton = it.btnPickDate
@@ -113,7 +113,7 @@ class EditEventFragment: LoggedFragment() {
     }
 
     private fun setupListeners() {
-        backButton.setOnClickListener {
+        backTextView.setOnClickListener {
             navigateToHome()
         }
 

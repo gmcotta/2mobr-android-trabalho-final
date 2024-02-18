@@ -37,6 +37,7 @@ class HomeFragment: LoggedFragment() {
     private lateinit var buttonAddEvent: Button
     private lateinit var emailText: TextView
     private lateinit var progressBar: ProgressBar
+    private lateinit var noEventsText: TextView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,6 +72,7 @@ class HomeFragment: LoggedFragment() {
             buttonAddEvent = it.btnAddEvent
             emailText = it.tvUserEmail
             progressBar = it.progressBar
+            noEventsText = it.tvNoEvents
 
             it.rvEventsList.apply {
                 layoutManager = LinearLayoutManager(this@HomeFragment.context)
@@ -82,8 +84,14 @@ class HomeFragment: LoggedFragment() {
     private fun setupObservers() {
         viewModel.eventsList.observe(viewLifecycleOwner) {
             it?.let {
-                homeAdapter.submitList(it)
+                if (it.isEmpty()) {
+                    noEventsText.visibility = View.VISIBLE
+                } else {
+                    noEventsText.visibility = View.GONE
+
+                }
                 progressBar.visibility = View.GONE
+                homeAdapter.submitList(it)
             }
         }
 

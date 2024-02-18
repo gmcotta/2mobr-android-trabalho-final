@@ -44,4 +44,8 @@
     <string name="get_events_error_message">Error while loading events!</string>
     <string name="delete_event_error_message">Error while deleting event!</string>
     <string name="delete_event_success_message">Event successfully deleted!</string>
+    <string name="delete_dialog_title">Delete event</string>
+    <string name="delete_dialog_text">Are you sure?</string>
+    <string name="delete_dialog_confirm_button">Yes</string>
+    <string name="delete_dialog_cancel_button">No</string>
 </resources>

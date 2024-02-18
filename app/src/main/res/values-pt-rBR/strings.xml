@@ -45,4 +45,8 @@
     <string name="get_events_error_message">Erro ao carregar eventos!</string>
     <string name="delete_event_error_message">Erro ao excluir eventos!</string>
     <string name="delete_event_success_message">Evento excluído!</string>
+    <string name="delete_dialog_title">Excluir evento</string>
+    <string name="delete_dialog_text">Você tem certeza?</string>
+    <string name="delete_dialog_confirm_button">Sim</string>
+    <string name="delete_dialog_cancel_button">Não</string>
 </resources>

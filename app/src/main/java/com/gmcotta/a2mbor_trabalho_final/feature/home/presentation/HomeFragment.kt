@@ -116,12 +116,12 @@ class HomeFragment: LoggedFragment() {
     private fun createDialog(event: Event) {
         val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(context)
         dialogBuilder
-            .setTitle("Delete event")
-            .setMessage("Are you sure?")
-            .setPositiveButton("Yes") { _, _ ->
+            .setTitle(R.string.delete_dialog_title)
+            .setMessage(R.string.delete_dialog_text)
+            .setPositiveButton(R.string.delete_dialog_confirm_button) { _, _ ->
                 viewModel.deleteEvent(event)
             }
-            .setNegativeButton("No") { dialog, _ ->
+            .setNegativeButton(R.string.delete_dialog_cancel_button) { dialog, _ ->
                 dialog.cancel()
             }
 

@@ -46,6 +46,7 @@
         <action
             android:id="@+id/action_homeFragment_to_editEventFragment"
             app:destination="@id/editEventFragment">
+
         </action>
     </fragment>
     <fragment
@@ -71,10 +72,10 @@
         <action
             android:id="@+id/action_editEventFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
-
-        <!-- TODO: Verificar o motivo de estar reclamando -->
         <argument
             android:name="event"
-            app:argType="com.gmcotta.a2mbor_trabalho_final.model.Event"/>
+            app:nullable="true"
+            android:defaultValue="@null"
+            app:argType="com.gmcotta.a2mbor_trabalho_final.model.Event" />
     </fragment>
 </navigation>

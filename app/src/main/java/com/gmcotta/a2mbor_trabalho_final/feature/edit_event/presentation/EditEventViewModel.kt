@@ -11,8 +11,8 @@ class EditEventViewModel: LoggedViewModel() {
     private val _msg = MutableLiveData<String>()
     val msg: LiveData<String> = _msg
 
-    fun saveEvent(event: Event) {
-        if (event.name.isNullOrBlank() || event.address.isNullOrBlank() || event.time == null || event.date == null) {
+    fun saveEvent(event: Event?) {
+        if (event == null || event.name.isNullOrBlank() || event.address.isNullOrBlank() || event.time == null || event.date == null) {
             _msg.value = "required_fields_error_message"
             return
         }

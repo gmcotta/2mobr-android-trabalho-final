@@ -24,8 +24,13 @@ class EditEventFragment: LoggedFragment() {
     private var binding: FragmentEditEventBinding? = null
     private val viewModel: EditEventViewModel by viewModels()
     private val editEventFragmentArgs: EditEventFragmentArgs by navArgs()
-    private val event: Event by lazy {
-        editEventFragmentArgs.event
+    private val event: Event? by lazy {
+        if (editEventFragmentArgs.event?.name == null) {
+            Event()
+        } else {
+            editEventFragmentArgs.event
+        }
+
     }
 
     private lateinit var backTextView: TextView
@@ -45,6 +50,10 @@ class EditEventFragment: LoggedFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        if (event?.name == null) {
+            Toast.makeText(requireContext(), getString(R.string.empty_event_message), Toast.LENGTH_LONG).show()
+            navigateToHome()
+        }
         binding = FragmentEditEventBinding.inflate(inflater, container, false)
         return binding?.root
     }
@@ -64,8 +73,8 @@ class EditEventFragment: LoggedFragment() {
 
     private fun setupElements() {
         binding?.let {
-            val formattedDate = event.date?.let { date -> DateFormat.getDateInstance().format(date) }
-            val formattedTime = event.time?.let { time -> DateFormat.getTimeInstance(DateFormat.SHORT).format(time) }
+            val formattedDate = event?.date?.let { date -> DateFormat.getDateInstance().format(date) }
+            val formattedTime = event?.time?.let { time -> DateFormat.getTimeInstance(DateFormat.SHORT).format(time) }
 
             backTextView = it.tvBack
             nameEditText = it.etName
@@ -77,10 +86,10 @@ class EditEventFragment: LoggedFragment() {
             saveEventButton = it.btnSaveEvent
             progressBar = it.progressBar
 
-            nameEditText.setText(event.name)
+            nameEditText.setText(event?.name)
             dateResult.text = getString(R.string.date_placeholder, formattedDate)
             timeResult.text = getString(R.string.time_placeholder, formattedTime)
-            addressEditText.setText(event.address)
+            addressEditText.setText(event?.address)
 
             materialDatePicker = MaterialDatePicker.Builder
                 .datePicker()
@@ -126,8 +135,8 @@ class EditEventFragment: LoggedFragment() {
         }
 
         saveEventButton.setOnClickListener {
-            event.name = nameEditText.text.toString()
-            event.address = addressEditText.text.toString()
+            event?.name = nameEditText.text.toString()
+            event?.address = addressEditText.text.toString()
             progressBar.visibility = View.VISIBLE
             viewModel.saveEvent(event)
         }
@@ -137,7 +146,7 @@ class EditEventFragment: LoggedFragment() {
             val timestamp = DateFormat.getDateInstance().parse(date)
             dateResult.text = getString(R.string.date_placeholder, date)
             if (timestamp != null) {
-                event.date = timestamp
+                event?.date = timestamp
             }
         }
 
@@ -148,7 +157,7 @@ class EditEventFragment: LoggedFragment() {
             val timestamp = DateFormat.getTimeInstance(DateFormat.SHORT).parse(time)
             timeResult.text = getString(R.string.time_placeholder, time)
             if (timestamp != null) {
-                event.time = timestamp
+                event?.time = timestamp
             }
         }
     }

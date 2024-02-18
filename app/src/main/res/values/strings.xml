@@ -48,4 +48,5 @@
     <string name="delete_dialog_text">Are you sure?</string>
     <string name="delete_dialog_confirm_button">Yes</string>
     <string name="delete_dialog_cancel_button">No</string>
+    <string name="empty_event_message">Event is empty!</string>
 </resources>
